@@ -1,0 +1,32 @@
+table {
+    border-collapse: collapse;
+}
+tr {
+    text-align: center;
+}
+th {
+    text-align: center;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: 16px;
+    border: 1px solid black;
+    width: 100px;
+}
+td {
+    width: 100px;
+    font-size: 12px;
+    border: 1px solid black;
+}
+erreur{
+    border: 10px solid red;
+}
+.recherche {
+    border: 1px solid black;
+    padding: 10px;
+    width: 905px;
+    background-color: cornflowerblue;
+    color: white;
+}
+.core{
+    margin:50px;
+}
