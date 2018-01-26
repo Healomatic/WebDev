@@ -103,29 +103,42 @@ function gen_form()
 //vérification du mot de passe via $_POST:    
 
     //vérification si le cookie avec le pass est présent:
-	if (!isset($_COOKIE['pass']) or $_COOKIE['pass'] != "password")
-	{
-		echo'<!DOCTYPE html>
-		<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-		<head>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="style.css" />
-		<title>Connexion</title>
-		</head>
-		<body>
-		<p>Veuillez entrer le mot de passe:</p>';
-		echo"<form action='data.php' method='post'>
-        <p>
-        <input type='password' name='mot_de_passe' />
-        <input type='submit' value='Valider' />
-        </p>
-		</form>
-		<p>L'accés à cette page est réservé au personnel autorisé </p>
-		</body>
-		</html>";
-	}else{
-        gen_form();
-    }
+        //! Problème au niveau du set up des variables
+    if (!isset($_COOKIE['pass']) or $_COOKIE['pass'] != "password")
+    {	
+        if (!isset($_POST['pass']) or $_POST['pass'] != "password")
+        {  
+		    echo'<!DOCTYPE html>
+                <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+                <head>
+                <meta charset="utf-8" />
+                <link rel="stylesheet" href="style.css" />
+                <title>Connexion</title>
+                </head>
+                <body>
+                <p>Veuillez entrer le mot de passe:</p>';
+                echo"<form action='form.php' method='post'>
+                <p>
+                <input type='password' name='mot_de_passe' />
+                <input type='submit' value='Valider' />
+                </p>
+                </form>
+                <p>L'accés à cette page est réservé au personnel autorisé </p>";
+                echo $_COOKIE['pass'];
+                echo $_POST['pass'];
+                echo "
+                </body>
+                </html>";
+    }else{
+            session_start();
+            setcookie('pass',$_POST['pass'],time() + 24*3600, null, null, false, true);
+            gen_form();
+        }
+    }   
+        
+echo $_COOKIE['pass'];
+echo $_POST['pass'];
+  //! fin de pb      
 
 //end
 ?>
